@@ -8,10 +8,10 @@ var $tvShowsContainer = $('#app-body').find('.tv-shows')
 
 $tvShowsContainer.on('click', 'button.like', function (ev) {
   var $this = $(this);
-  var id = $this.data("id")
-  $.post("/vote/"+ id, function(data){
-  	console.log(data);
-  	$this.closest('.tv-show').toggleClass('liked')
+  var $article = $this.closest('.tv-show')
+  var id = $article.data("id")
+  $.post("/api/vote/"+ id, function(data){
+  	$article.toggleClass('liked')
   })
   
 })

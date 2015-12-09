@@ -1,31 +1,13 @@
 import express from 'express'
+import api from 'src/server/express/api'
+import mongoose from 'mongoose'
+
+mongoose.connect('mongodb://localhost/tvify')
 
 const app = express()
 
 app.use( express.static("public") )
 
-
-
-const votes = {}
-
-// GET /votes
-app.get("/votes", (req, res) => {
-	res.json(votes)
-})
-
-// POST /vote/<id>
-app.post("/vote/:id", (req, res) => {
-
-	let id = req.params.id
-	if ( votes[id] === undefined ){
-		votes[id] = 1
-	}else {
-		votes[id] += 1
-	}
-
-	res.json(votes[id])
-
-})
-
+app.use("/api", api)
 
 app.listen(8000, () => console.log("listening on port 8000") )

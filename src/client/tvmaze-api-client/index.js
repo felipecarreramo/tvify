@@ -7,6 +7,10 @@ import $ from 'jquery'
 export function getShows(fn) {
   $.ajax('http://api.tvmaze.com/shows', {
     success: function (shows, textStatus, xhr) {
+
+      $.get('/api/votes', function(votes){
+
+      })
       fn(shows)
     }
   })
